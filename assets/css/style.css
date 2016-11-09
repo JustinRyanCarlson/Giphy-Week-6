@@ -1,0 +1,11 @@
+body {
+    background-image: url("../images/background.png");
+}
+
+.button-list {
+    margin: 15px 5px;
+}
+
+.button-submit {
+    margin-top: 10px;
+}
