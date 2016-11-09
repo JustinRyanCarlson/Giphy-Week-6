@@ -4,6 +4,17 @@ var animals = ["pig", "horse", "snake", "cat", "dog", "fish"];
 animalButtons();
 
 
+
+$('#addAnimal').on('click', function() {
+    var animalEntered = $('#animalInput').val().trim();
+    animals.push(animalEntered);
+    $('#animalInput').val('');
+    animalButtons();
+
+    return false;
+});
+
+
 $('.btn').on('click', function() {
     var animalClicked = $(this).data('animal');
     var query = 'http://api.giphy.com/v1/gifs/search?q=' + animalClicked + '&limit=10&api_key=dc6zaTOxFJmzC';
@@ -18,11 +29,17 @@ $('.btn').on('click', function() {
         console.log(response);
 
         for (i = 0; i < results.length; i++) {
-            var newGif = $('<div class="col-sm-3">');
+            var newGif = $('<div class="col-sm-4">');
             var rating = results[i].rating.toUpperCase();
             var p = $('<p>').html('Rating: ' + rating);
             var img = $('<img>');
+
             img.attr('src', results[i].images.fixed_height_small_still.url);
+            img.attr('data-still', results[i].images.fixed_height_small_still.url);
+            img.attr('data-animate', results[i].images.fixed_height_small.url);
+            img.attr('data-clicked', false);
+            img.addClass('gif-margin');
+            img.addClass('gif');
 
             newGif.append(p);
             newGif.append(img);
@@ -32,19 +49,22 @@ $('.btn').on('click', function() {
 });
 
 
+$(document.body).on('click', '.gif', function() {
+    var clicked = $(this).attr('data-clicked');
 
-
-$('#addAnimal').on('click', function() {
-    var animalEntered = $('#animalInput').val().trim();
-    animals.push(animalEntered);
-    $('#animalInput').val('');
-    animalButtons();
-
-    return false;
+    if (clicked === false) {
+        $(this).attr('src', $(this).data('animate'));
+        $(this).attr('data-clicked', true);
+    } else {
+        $(this).attr('src', $(this).data('still'));
+        $(this).attr('data-state', false);
+    }
 });
 
 
-
+//
+// FUNCTIONS --------------------------------------------------------------------------------------------------------------
+//
 
 function animalButtons() {
     $('#animalButtons').empty();
