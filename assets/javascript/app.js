@@ -50,7 +50,7 @@ $('.btn').on('click', function() {
 
 
 $(document.body).on('click', '.gif', function() {
-    var clicked = $(this).attr('data-clicked');
+    var clicked = $(this).data('clicked');
 
     if (clicked === false) {
         $(this).attr('src', $(this).data('animate'));
