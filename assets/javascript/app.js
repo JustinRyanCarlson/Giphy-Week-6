@@ -31,14 +31,15 @@ $(document.body).on('click', '.button-list', function() {
             var newGif = $('<div class="col-sm-4">');
             var rating = results[i].rating.toUpperCase();
             var p = $('<p>').html('Rating: ' + rating);
+            p.addClass('text-center');
             var img = $('<img>');
 
             img.attr('src', results[i].images.fixed_height_small_still.url);
             img.attr('data-still', results[i].images.fixed_height_small_still.url);
             img.attr('data-animate', results[i].images.fixed_height_small.url);
             img.attr('data-clicked', false);
-            img.addClass('gif-margin');
-            img.addClass('gif');
+            //check out this panel class and see if it can be better named so i can make a traslucent block for the whole div
+            img.addClass('gif-margin gif center-block panel');
 
             newGif.append(p);
             newGif.append(img);
