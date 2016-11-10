@@ -15,7 +15,7 @@ $('#addAnimal').on('click', function() {
 });
 
 
-$('.btn').on('click', function() {
+$(document.body).on('click', '.button-list', function() {
     var animalClicked = $(this).data('animal');
     var query = 'http://api.giphy.com/v1/gifs/search?q=' + animalClicked + '&limit=10&api_key=dc6zaTOxFJmzC';
 
@@ -26,7 +26,6 @@ $('.btn').on('click', function() {
         method: 'GET'
     }).done(function(response) {
         var results = response.data;
-        console.log(response);
 
         for (i = 0; i < results.length; i++) {
             var newGif = $('<div class="col-sm-4">');
