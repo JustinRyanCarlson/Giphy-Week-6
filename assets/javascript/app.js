@@ -1,7 +1,7 @@
 var animals = ["pig", "horse", "snake", "cat", "dog", "fish"];
 
 
-animalButtons();
+createAnimalButtons();
 
 
 
@@ -9,7 +9,7 @@ $('#addAnimal').on('click', function() {
     var animalEntered = $('#animalInput').val().trim();
     animals.push(animalEntered);
     $('#animalInput').val('');
-    animalButtons();
+    createAnimalButtons();
 
     return false;
 });
@@ -26,7 +26,7 @@ $(document.body).on('click', '.button-list', function() {
         method: 'GET'
     }).done(function(response) {
         var results = response.data;
-
+        // make function and pass in results, dont forget to limit ratings of the gifs
         for (i = 0; i < results.length; i++) {
             var newGif = $('<div class="col-sm-4">');
             var rating = results[i].rating.toUpperCase();
@@ -57,7 +57,7 @@ $(document.body).on('click', '.gif', function() {
         $(this).attr('data-clicked', true);
     } else {
         $(this).attr('src', $(this).data('still'));
-        $(this).attr('data-state', false);
+        $(this).attr('data-clicked', false);
     }
 });
 
@@ -66,7 +66,7 @@ $(document.body).on('click', '.gif', function() {
 // FUNCTIONS --------------------------------------------------------------------------------------------------------------
 //
 
-function animalButtons() {
+function createAnimalButtons() {
     $('#animalButtons').empty();
 
     for (var i = 0; i < animals.length; i++) {
