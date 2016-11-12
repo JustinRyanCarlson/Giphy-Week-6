@@ -23,7 +23,7 @@ $(document.body).on('click', '.button-list', function() {
     // Creates a variable and assigns the value to the name of the animal clicked/
     var animalClicked = $(this).data('animal');
     // Creates a variable to hold the query string for the Giphy API request and adds the aniamls name to the query string.
-    var query = 'http://api.giphy.com/v1/gifs/search?q=' + animalClicked + '&limit=10&api_key=dc6zaTOxFJmzC';
+    var query = 'https://api.giphy.com/v1/gifs/search?q=' + animalClicked + '&limit=10&api_key=dc6zaTOxFJmzC';
 
     // Empties the animals element so new gifs are loaded in on each click of an animals button.
     $('#animals').empty();
@@ -76,7 +76,7 @@ $(document.body).on('click', '.button-list', function() {
 // This on click event is structured differently from how we have been doing it so that elements created after the DOM has
 // loaded can be manipulated.
 $(document.body).on('click', '.gif', function() {
-    var click = $(this).data('clicked');
+    var click = $(this).attr('data-clicked');
 
     if (click === 'still') {
         $(this).attr('src', $(this).data('animate'));
